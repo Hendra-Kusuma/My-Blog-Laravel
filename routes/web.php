@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticlesController;
 
@@ -33,6 +34,15 @@ Route::put('/article/{id}', [ArticlesController::class, 'update'])->name('update
 
 Route::delete('/article/{id}', [ArticlesController::class, 'delete'])->name('delete');
 
+// Auth Register Login Logout
+
+Route::get('/register', [AuthController::class, 'registerForm']);
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/login', [AuthController::class, 'loginForm']);
+
+Route::post('/login', [AuthController::class, 'login']);
 
 
 // HOME 
