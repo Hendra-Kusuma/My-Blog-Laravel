@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AboutController extends Controller
 {
     public function index() {
-        $name = 'Hendra';
+        $name = 'Hendra Kusuma';
         $gender = 'male';
         $date_of_birth = '27 April 1989';
         $address = 'Sai Residence, TajurHalang, Bogor';

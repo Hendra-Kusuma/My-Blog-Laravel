@@ -22,9 +22,9 @@ Route::get('/about', [AboutController::class, 'index']);
 
 Route::get('/article', [ArticlesController::class, 'index'])->name('article');
 
-Route::get('/article/{id}/edit', [ArticlesController::class, 'edit'])->name('edit');
+Route::get('/article/{id}/edit', [ArticlesController::class, 'edit'])->name('edit')->middleware('auth');
 
-Route::get('/article/create', [ArticlesController::class, 'create'])->name('create');
+Route::get('/article/create', [ArticlesController::class, 'create'])->name('create')->middleware('auth');
 
 Route::post('/article', [ArticlesController::class, 'store'])->name('store');
 
@@ -36,14 +36,15 @@ Route::delete('/article/{id}', [ArticlesController::class, 'delete'])->name('del
 
 // Auth Register Login Logout
 
-Route::get('/register', [AuthController::class, 'registerForm']);
+Route::get('/register', [AuthController::class, 'registerForm'])->middleware('guest');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/login', [AuthController::class, 'loginForm']);
+Route::get('/login', [AuthController::class, 'loginForm'])->middleware('guest')->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/logout', [AuthController::class, 'logout']);
 
 // HOME 
 

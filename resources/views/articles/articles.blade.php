@@ -26,9 +26,11 @@
                 </div>
             @endforeach
         </div>
-        <div class="container px-4 py-5" >
-            <a href='/article/create' class="btn btn-primary">Make a New Article</a>
-        </div>
+        @auth
+            <div class="container px-4 py-5" >
+                <a href='/article/create' class="btn btn-primary">Make a New Article</a>
+            </div>
+        @endauth
         {{-- Pagination --}}
         {{ $blogs->links() }}
     </div>

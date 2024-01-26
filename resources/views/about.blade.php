@@ -5,7 +5,7 @@
     <div class="container">
         <div class="text-center">
             <div class="masthead-followup-icon d-inline-block mb-2 px-4 py-5">
-                <img src="Hendra Style.jpg" alt="Hendra's Photo" width="180" height="260">
+                <img src="Hendra Style.jpg" alt="Hendra's Photo" width="410" height="260" style="border-radius: 25px">
             </div>
             <div class="container px-4 py-5">
                 <h2 class="display-6 fw-normal">Hy, my name is {{ $name }} 😎</h2>

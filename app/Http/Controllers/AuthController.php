@@ -14,6 +14,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request) {
+        // dd($request);
         $validated = $request->validate([
             'name' => 'required|unique:users',
             'email' => 'required|email:rfc, dns',
@@ -26,7 +27,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect('/article') -> with('success', 'Welcome Back!'. $validated['name']);
+        return redirect('/article') -> with('success', 'Selamat Bergabung 🤠🚀'. $validated['name']. ', silahkan login 😋' );
     }
 
     public function loginForm() {
@@ -34,17 +35,31 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
+        // dd($request);
         $credentials = $request->validate([
             'email' => 'required|email:rfc, dns',
             'password' => 'required'
         ]);
-        if (Auth::attempt($credentials)) {
+        $remember = $request->input('remember');
+        // dd($remember);
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
  
-            return redirect('/article')->with('success', 'Welcome Back!'. Auth::user()->name);
+            return redirect('/article')->with('success', 'Welcome Back!🤠🚀 '. Auth::user()->name);
         }
         return back()->withErrors([
             'email' => 'Invalid email or password. Please try again.',
         ])->onlyInput('email');
+    }
+
+    public function logout (Request $request) {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+ 
+    return redirect ('/');
     }
 }

@@ -25,6 +25,17 @@
                 <li class="nav-item"><a href={{ route('home') }} class="nav-link" aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="/article" class="nav-link">Articles</a></li>
                 <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                @auth
+                    <form action="/logout" method="post" onclick="return confirm('are you sure want to logout')">
+                        @csrf
+                        <button class="btn btn-primary">Logout</button>
+                    </form>
+                @endauth
+                @guest
+                    <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                @endguest
+
             </ul>
         </header>
     </div>
