@@ -31,6 +31,7 @@
             <button type="submit" class="btn btn-primary">Login</button>
             <br>
             <p class="form label py-3">belum punya akun? register <a href="/register">disini</a></p>
+            <p class="form label py-3">lupa password? klik <a href="/forget">disini</a></p>
         </form>
     </div>
 @endsection

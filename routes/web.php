@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\mailController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticlesController;
 
@@ -51,3 +52,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/', function () {
     return view('home'); 
 })->name('home');
+
+// Mail
+
+Route::get('/test_email', [mailController::class, 'email']);
+
+Route::get('/forget', [mailController::class, 'forget']);
