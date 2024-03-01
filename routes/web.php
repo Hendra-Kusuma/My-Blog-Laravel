@@ -57,4 +57,26 @@ Route::get('/', function () {
 
 Route::get('/test_email', [mailController::class, 'email']);
 
-Route::get('/forget', [mailController::class, 'forget']);
+// 404 route
+
+Route::fallback(function () {
+    return view('auth/404');
+});
+
+// Not Authorize
+
+Route::get('/unauthorized', function () {
+    return view('auth.unauthorized');
+})->name('unauthorized');
+
+// Forgot Password
+Route::get('/forgot-password', [mailController::class, 'getForgot'])->name('password.request');
+Route::post('/forgot-password', [mailController::class, 'sendForgotPassword'])->name('forgot-password');
+Route::get('/reset-password/{token}', [mailController::class, 'getResetPassword'])->name('password.reset')->middleware('guest');
+Route::post('/reset-password', [mailController::class, 'sendResetPassword'])->name('password.update');
+
+// email verification
+
+Route::get('/email/verify', [mailController::class, 'getVerification'])->name('verification.notice')->middleware('auth');
+Route::get('/email/verify/{id}/{hash}', [mailController::class, 'verifyEmail'])->name('verification.verify');
+Route::post('/email/resend', [mailController::class, 'resendVerification'])->name('verification.resend');

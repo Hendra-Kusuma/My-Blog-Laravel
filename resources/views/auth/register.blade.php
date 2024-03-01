@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container px-5 py-5">
+    <div class="container px-5 py-5 border rounded-3">
         <h1>Register</h1>
         <br>
         <form action="/register" method="post">

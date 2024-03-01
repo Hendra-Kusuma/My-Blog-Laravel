@@ -2,9 +2,14 @@
 
 
 @section('content')
-    <div class="container px-5 py-5">
+    <div class="container px-5 py-5 border rounded-3">
         <h1>Login</h1>
         <br>
+        @if ($status = session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ $status }}
+            </div>
+        @endif
         <form action="/login" method="post">
             @csrf
             <div class="mb-3">
@@ -31,7 +36,7 @@
             <button type="submit" class="btn btn-primary">Login</button>
             <br>
             <p class="form label py-3">belum punya akun? register <a href="/register">disini</a></p>
-            <p class="form label py-3">lupa password? klik <a href="/forget">disini</a></p>
+            <p class="form label py-3">lupa password? klik <a href="/forgot-password">disini</a></p>
         </form>
     </div>
 @endsection
