@@ -7,10 +7,11 @@
             {{ session('success') }}
         </div>
     @endif
+    <img src="{{ asset('storage/' . $blog->image_path) }}" alt="" class="img-fluid mx-auto d-block" style="max-width: auto; max-height: 360px; border-radius: 10px">
     <div class="container px-4 py-5" id="featured-3">
         <h1>{{ $blog->title }}</h1>
 
-        <p>{{ $blog->content }}</p>
+        <p style="text-align: justify;">{{ $blog->content }}</p>
 
         <p><i>Author : {{ $blog->author }}</i></p>
     </div>

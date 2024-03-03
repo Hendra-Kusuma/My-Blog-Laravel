@@ -27,7 +27,11 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect('/article') -> with('success', 'Selamat Bergabung 🤠🚀'. $validated['name']. ', silahkan login 😋' );
+        $user = DB::table('users')->where('email', $validated['email'])->first();
+
+        Auth::loginUsingId($user->id);
+
+        return redirect('/email/verify') -> with('message', 'Selamat Bergabung 🤠🚀'. $validated['name']. ', silahkan verifikasi email 😋' );
     }
 
     public function loginForm() {

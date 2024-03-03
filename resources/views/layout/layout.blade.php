@@ -22,6 +22,9 @@
             </a>
 
             <ul class="nav nav-pills">
+                @auth
+                    <li class="nav-item"><a href=# class="nav-link" aria-current="profile" style="font-weight: light; color: rgb(68, 27, 203); border: 2px solid rgb(72, 72, 245)">({{ Auth::user()->name }}) online 🟢</a></li>
+                @endauth
                 <li class="nav-item"><a href={{ route('home') }} class="nav-link" aria-current="page">Home</a></li>
                 <li class="nav-item"><a href="/article" class="nav-link">Articles</a></li>
                 <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
@@ -85,3 +88,4 @@
 </body>
 
 </html>
+

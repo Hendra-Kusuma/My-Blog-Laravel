@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mailController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Auth\Events\Verified;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,5 +80,8 @@ Route::post('/reset-password', [mailController::class, 'sendResetPassword'])->na
 // email verification
 
 Route::get('/email/verify', [mailController::class, 'getVerification'])->name('verification.notice')->middleware('auth');
-Route::get('/email/verify/{id}/{hash}', [mailController::class, 'verifyEmail'])->name('verification.verify');
-Route::post('/email/resend', [mailController::class, 'resendVerification'])->name('verification.resend');
+Route::post('/email/verification-notification', [mailController::class, 'sendEmailVerification'])->name('verification.send')->middleware(['auth', 'throttle: 6, 1']);
+Route::get('/email/verify/{id}/{hash}', [mailController::class, 'verifyEmail'])->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard')->middleware(['auth', 'verified']);

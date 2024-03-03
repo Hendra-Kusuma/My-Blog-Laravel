@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\testMail;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class mailController extends Controller
 {
@@ -68,6 +69,17 @@ class mailController extends Controller
 
     public function getVerification() {
         return view('auth.verification-email');
+    }
+
+    public function sendEmailVerification(Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    }
+
+    public function verifyEmail(EmailVerificationRequest $request){
+        $request->fulfill();
+ 
+        return redirect('/dashboard');
     }
 };
 

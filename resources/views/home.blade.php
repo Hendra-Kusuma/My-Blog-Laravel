@@ -15,10 +15,12 @@
                     extensive prebuilt components, and powerful JavaScript plugins.</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <a href="{{ route('article') }}" class="btn btn-primary btn-lg px-4 me-md-2">See Articles</a>
-                    @auth
-                        <a href="{{ route('create') }}" type="button" class="btn btn-outline-secondary btn-lg px-4">Make New
-                            Articles</a>
-                    @endauth
+                    @role('writer')
+                        @auth
+                            <a href="{{ route('create') }}" type="button" class="btn btn-outline-secondary btn-lg px-4">Make New
+                                Articles</a>
+                        @endauth
+                    @endrole
                 </div>
             </div>
         </div>

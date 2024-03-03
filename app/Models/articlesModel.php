@@ -15,5 +15,6 @@ class articlesModel extends Model
         'title',
         'content',
         'author',
+        'image_path'
     ];
 }

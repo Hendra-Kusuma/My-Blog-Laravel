@@ -27,10 +27,20 @@
                 <input type="text" name="author" class="form-control" id="exampleFormControlInput1"
                     placeholder="Set your Name" value="{{ old('author') }}">
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
             @error('author')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control" id="image"">
+            </div>
+            @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <br>
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
 @endsection
+
+

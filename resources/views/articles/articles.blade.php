@@ -15,10 +15,11 @@
         <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
             @foreach ($blogs as $item)
                 <div class="feature col">
+                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="" class="img-fluid mx-auto d-block" style="max-width: auto; max-height: 360px; border-radius: 10px">
                     <h3 class="fs-2 text-body-emphasis">{{ $item->title }}</h3>
-                    <p>{{ Str::limit($item->content, 200) }}</p>
+                    <p style="text-align: justify;">{{ Str::limit($item->content, 200) }}</p>
                     <a href="/article/{{ $item->id }}" class="icon-link">
-                        Read More   
+                        Read More
                         <svg class="bi">
                             <use xlink:href="#chevron-right"></use>
                         </svg>
@@ -26,11 +27,13 @@
                 </div>
             @endforeach
         </div>
-        @auth
-            <div class="container px-4 py-5" >
-                <a href='/article/create' class="btn btn-primary">Make a New Article</a>
-            </div>
-        @endauth
+        @role('writer')
+            @auth
+                <div class="container px-4 py-5">
+                    <a href='/article/create' class="btn btn-primary">Make a New Article</a>
+                </div>
+            @endauth
+        @endrole
         {{-- Pagination --}}
         {{ $blogs->links() }}
     </div>
