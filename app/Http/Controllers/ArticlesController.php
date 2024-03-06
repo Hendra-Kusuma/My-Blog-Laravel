@@ -34,7 +34,7 @@ class ArticlesController extends Controller
             'title' => 'required|max:100|min:5|unique:articles',
             'content' => 'required|min:10',
             'author' => 'required|min:2',
-            'image' => 'required'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         // unique:posts
         // dd($validated);
@@ -44,12 +44,21 @@ class ArticlesController extends Controller
         //     'author' => $request['author'],
         //     'image_path' => $request->file('image')->store('images')
         // ]);
-        $blog = new articlesModel();
-        $blog->title = $request->title;
-        $blog->content = $request->content;
-        $blog->author = $request->author;
-        $blog->image_path = $request->file('image')->store('images');
-        $blog->save();
+
+        // bisa juga
+        // $blog = new articlesModel();
+        // $blog->title = $request->title;
+        // $blog->content = $request->content;
+        // $blog->author = $request->author;
+        // $blog->image_path = $request->file('image')->store('images');
+        // $blog->save();
+
+        articlesModel::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'author' => $request->author,
+            'image_path' => $request->file('image')->store('images')
+        ]);
 
         return redirect('/article')->with('success', 'Artikel berhasil disimpan!');
     }

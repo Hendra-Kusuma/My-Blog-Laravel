@@ -18,7 +18,7 @@
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
-                <h1 class="fs-4">Hendra's Blog</h1>
+                <h1 style="font-size: 30px; font-weight: bold; font-family: 'serif', Times ;"><i>Hendra's Blog</i> 🤠</h1>
             </a>
 
             <ul class="nav nav-pills">

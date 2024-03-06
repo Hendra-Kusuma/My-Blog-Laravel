@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\BlogController;
+use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\LogoutController;
+use App\Http\Controllers\api\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('blogs', BlogController::class);
+Route::post('/register', RegisterController::class);
+// Route::post('/login', LoginController::class);
+// Route::post('/logout', LogoutController::class);
